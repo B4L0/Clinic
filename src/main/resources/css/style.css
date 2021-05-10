@@ -1,0 +1,32 @@
+#content{
+    -fx-background-color: #d1e8e8;
+    -fx-alignment: CENTER;
+}
+
+#title{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.input{
+    -fx-max-width: 200px;
+    -fx-min-height: 40px;
+}
+
+.wrong-input{
+    -fx-border-color: red;
+}
+
+#confirm {
+    -fx-min-width: 300px;
+    -fx-min-height: 40px;
+}
+
+#error-msg{
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}
+
+.sidebar-button{
+    -fx-min-width: 75px;
+}

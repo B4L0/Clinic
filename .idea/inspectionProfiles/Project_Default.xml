@@ -1,0 +1,47 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="JpaAttributeMemberSignatureInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaAttributeTypeInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaConfigDomFacetInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="MyCustomScope" level="WARNING" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaDataSourceORMDomInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaDataSourceORMInspection" enabled="true" level="ERROR" enabled_by_default="false">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaDomInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaEntityListenerInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaEntityListenerWarningsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="MyCustomScope" level="WARNING" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaMissingIdInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaModelReferenceInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaORMDomInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaObjectClassSignatureInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaQlInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="JpaQueryApiInspection" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="MyCustomScope" level="ERROR" enabled="true" />
+    </inspection_tool>
+  </profile>
+</component>
