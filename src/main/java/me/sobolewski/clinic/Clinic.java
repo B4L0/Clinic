@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import me.sobolewski.clinic.account.LoginSession;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Visit;
 import me.sobolewski.clinic.model.util.EntityUtils;
 
@@ -23,7 +24,7 @@ public class Clinic extends Application {
     }
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         
         stage.setScene(FXMLManager.loadScene("login"));
         stage.setTitle("Przychodnia");

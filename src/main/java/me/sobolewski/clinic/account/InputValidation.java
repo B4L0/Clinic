@@ -1,4 +1,4 @@
-package me.sobolewski.clinic;
+package me.sobolewski.clinic.account;
 
 import lombok.experimental.UtilityClass;
 

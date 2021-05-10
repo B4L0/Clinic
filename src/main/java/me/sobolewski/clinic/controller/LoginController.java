@@ -6,11 +6,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import me.sobolewski.clinic.Clinic;
-import me.sobolewski.clinic.FXMLManager;
 import me.sobolewski.clinic.account.LoginSession;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Doctor;
 import me.sobolewski.clinic.model.util.EntityUtils;
 

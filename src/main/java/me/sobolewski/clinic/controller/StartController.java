@@ -6,13 +6,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import me.sobolewski.clinic.Clinic;
-import me.sobolewski.clinic.FXMLManager;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Doctor;
 
 import java.net.URL;

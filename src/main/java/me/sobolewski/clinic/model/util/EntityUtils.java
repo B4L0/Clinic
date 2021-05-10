@@ -1,7 +1,7 @@
 package me.sobolewski.clinic.model.util;
 
 import lombok.experimental.UtilityClass;
-import me.sobolewski.clinic.DBManager;
+import me.sobolewski.clinic.manager.DBManager;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;

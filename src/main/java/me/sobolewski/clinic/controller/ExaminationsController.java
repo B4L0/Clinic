@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import me.sobolewski.clinic.FXMLManager;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Examination;
 import me.sobolewski.clinic.model.util.EntityUtils;
 

@@ -1,9 +1,10 @@
-package me.sobolewski.clinic;
+package me.sobolewski.clinic.manager;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
+import me.sobolewski.clinic.Clinic;
 
 import java.io.IOException;
 import java.util.Objects;
