@@ -111,9 +111,9 @@
     <schema id="35" parent="1" name="SYSTEM">
       <ObjectId>9</ObjectId>
       <CreatedTimestamp>2019-05-30.05:11:00</CreatedTimestamp>
-      <ModifiedTimestamp>2021-05-10.20:15:20</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-05-20.15:36:52</ModifiedTimestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <IntrospectionTimestamp>2021-05-10.20:15:20</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-05-20.15:36:52</IntrospectionTimestamp>
       <CommentsHash>17309183491</CommentsHash>
       <Current>1</Current>
     </schema>
@@ -50912,7 +50912,7 @@
     <table id="7311" parent="35" name="PATIENTS">
       <ObjectId>75012</ObjectId>
       <CreatedTimestamp>2021-05-10.19:49:43</CreatedTimestamp>
-      <ModifiedTimestamp>2021-05-10.19:49:43</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-05-20.15:36:52</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="7312" parent="35" name="PRESCRIPTIONS">
@@ -59631,7 +59631,6 @@ HINT#</ColNames>
     <column id="9084" parent="7311" name="EMAIL">
       <Position>6</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="9085" parent="7311" name="ADDRESS">
       <Position>7</Position>

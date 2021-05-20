@@ -97,9 +97,11 @@ public class PatientsController implements Initializable {
     }
     
     public void newPatient() {
+        FXMLManager.openSceneInNewWindow("new-patient", "Dodawanie pacjenta");
     }
     
     public void editPatient() {
+    
     }
     
     public void deletePatient() {

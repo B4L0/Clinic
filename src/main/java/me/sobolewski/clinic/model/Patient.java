@@ -2,6 +2,8 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +28,8 @@ public class Patient implements Serializable {
     private String phoneNumber;
     @Column(name = "EMAIL")
     private String email;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ADDRESS", referencedColumnName="ADDRESS_ID")
     private Address address;
     

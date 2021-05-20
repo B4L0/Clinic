@@ -28,10 +28,12 @@ public class Address implements Serializable {
     @Column(name = "ZIP")
     private String zip;
     
+    @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private Set<Doctor> doctors;
+    @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private Set<Patient> patients;
 }

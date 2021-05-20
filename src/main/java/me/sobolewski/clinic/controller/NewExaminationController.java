@@ -2,7 +2,6 @@ package me.sobolewski.clinic.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -36,7 +35,7 @@ public class NewExaminationController implements Initializable {
         root.addEventHandler(KeyEvent.ANY, keyEvent -> saveButton.setDisable(!filled()));
     }
     
-    public void save(ActionEvent actionEvent) {
+    public void save() {
         Examination exam = new Examination();
         exam.setName(nameField.getText());
         exam.setType(typeCombo.getValue());
@@ -47,10 +46,10 @@ public class NewExaminationController implements Initializable {
         ExaminationsController.setExaminationsList(
                 FXCollections.observableArrayList(EntityUtils.getList(Examination.class)));
         
-        close(actionEvent);
+        close();
     }
     
-    public void close(ActionEvent actionEvent) {
+    public void close() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
