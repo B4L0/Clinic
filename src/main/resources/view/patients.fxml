@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Patients"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.sobolewski.clinic.controller.PatientsController">
+    <top>
+        <ToolBar prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <items>
+                <Label text="Pacjenci">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </Label>
+                <HBox visible="false" HBox.hgrow="ALWAYS" />
+                <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" text="Odśwież" />
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Powrót" />
+            </items>
+            <padding>
+                <Insets right="20.0" />
+            </padding>
+        </ToolBar>
+    </top>
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" spacing="20.0" BorderPane.alignment="TOP_CENTER">
+            <children>
+                <TextField fx:id="searchField" maxWidth="120.0" onKeyPressed="#onEnter" promptText="Wyszukiwanie">
+                    <VBox.margin>
+                        <Insets top="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" styleClass="sidebar-button" text="Szukaj">
+                    <VBox.margin>
+                        <Insets top="-15.0" />
+                    </VBox.margin>
+                </Button>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Separator>
+                <Button fx:id="newButton" mnemonicParsing="false" onAction="#newPatient" styleClass="sidebar-button" text="Nowy" />
+                <Button fx:id="editButton" mnemonicParsing="false" onAction="#editPatient" styleClass="sidebar-button" text="Edytuj" />
+                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePatient" styleClass="sidebar-button" text="Usuń" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="IDColumn" editable="false" prefWidth="40.0" text="ID" />
+                <TableColumn fx:id="firstNameColumn" editable="false" prefWidth="97.0" text="Imię" />
+                <TableColumn fx:id="lastNameColumn" editable="false" prefWidth="100.0" text="Nazwisko" />
+                <TableColumn fx:id="PESELColumn" editable="false" prefWidth="85.0" text="PESEL" />
+            <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Nr telefonu" />
+            <TableColumn fx:id="emailColumn" prefWidth="125.0" text="E-mail" />
+            <TableColumn fx:id="addressColumn" prefWidth="342.3999938964844" text="Adres">
+               <columns>
+                  <TableColumn fx:id="cityColumn" text="Miasto" />
+                  <TableColumn fx:id="streetColumn" text="Ulica" />
+                  <TableColumn fx:id="numberColumn" prefWidth="75.0" text="Numer" />
+                  <TableColumn fx:id="zipColumn" prefWidth="75.0" text="Kod pocztowy" />
+               </columns>
+            </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

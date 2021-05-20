@@ -89,6 +89,7 @@ public class StartController implements Initializable {
     }
     
     public void patients(ActionEvent actionEvent) {
-    
+        Stage stage = (Stage) patientsButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("patients"));
     }
 }
