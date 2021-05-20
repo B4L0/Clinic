@@ -25,18 +25,16 @@ public class EditExaminationController implements Initializable {
     
     private static final ObservableList<ExaminationType> EXAMINATION_TYPES =
             FXCollections.observableArrayList(ExaminationType.values());
+    @Getter
+    @Setter
+    private static Examination editedExam;
     private final ExaminationsController ec = FXMLManager.getController("examinations");
-    
     public BorderPane root;
     public TextField nameField;
     public ComboBox<ExaminationType> typeCombo;
     public TextArea descArea;
     public Button saveButton;
     public Button cancelButton;
-    
-    @Getter
-    @Setter
-    private static Examination editedExam;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,8 +44,6 @@ public class EditExaminationController implements Initializable {
         nameField.setText(editedExam.getName());
         typeCombo.setValue(editedExam.getType());
         descArea.setText(editedExam.getDescription());
-        
-        System.out.println(editedExam);
     }
     
     public void save(ActionEvent actionEvent) {
@@ -57,8 +53,6 @@ public class EditExaminationController implements Initializable {
         editedExam.setDescription(descArea.getText());
         
         EntityUtils.update(editedExam);
-        
-        ec.refresh();
         
         close(actionEvent);
     }

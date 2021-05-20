@@ -6,6 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Address;
 import me.sobolewski.clinic.model.Patient;
 import me.sobolewski.clinic.model.util.EntityUtils;
@@ -13,7 +16,12 @@ import me.sobolewski.clinic.model.util.EntityUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NewPatientController implements Initializable {
+public class EditPatientController implements Initializable {
+    
+    @Getter
+    @Setter
+    private static Patient editedPatient;
+    private final PatientsController pc = FXMLManager.getController("patients");
     
     public BorderPane root;
     public TextField firstNameField;
@@ -31,40 +39,54 @@ public class NewPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         root.addEventHandler(KeyEvent.ANY, keyEvent -> saveButton.setDisable(!filled()));
+        
+        firstNameField.setText(editedPatient.getFirstName());
+        lastNameField.setText(editedPatient.getLastName());
+        PESELField.setText(editedPatient.getPESEL());
+        phoneField.setText(editedPatient.getPhoneNumber());
+        emailField.setText(editedPatient.getEmail());
+        if (editedPatient.getAddress().getCity() != null)
+            cityField.setText(editedPatient.getAddress().getCity());
+        streetField.setText(editedPatient.getAddress().getStreet());
+        numberField.setText(editedPatient.getAddress().getAppNumber());
+        zipField.setText(editedPatient.getAddress().getZip());
     }
+    
     
     public void save() {
         boolean exists = false;
         
+        Address oldAddress = editedPatient.getAddress();
         Address address = new Address();
         address.setCity(cityField.getText());
         address.setStreet(streetField.getText());
         address.setAppNumber(numberField.getText());
         address.setZip(zipField.getText());
         
-        Patient patient = new Patient();
-        patient.setFirstName(firstNameField.getText());
-        patient.setLastName(lastNameField.getText());
-        patient.setPESEL(PESELField.getText());
-        patient.setPhoneNumber(phoneField.getText());
+        editedPatient.setFirstName(firstNameField.getText());
+        editedPatient.setLastName(lastNameField.getText());
+        editedPatient.setPESEL(PESELField.getText());
+        editedPatient.setPhoneNumber(phoneField.getText());
         if (!emailField.getText().equals("")) {
-            patient.setEmail(emailField.getText());
+            editedPatient.setEmail(emailField.getText());
         }
         
-        for (Address a : EntityUtils.getList(Address.class)) {
-            if (address.equals(a)) {
-                patient.setAddress(a);
-                exists = true;
-                break;
+        if (!oldAddress.equals(address)) {
+            for (Address a : EntityUtils.getList(Address.class)) {
+                if (address.equals(a)) {
+                    editedPatient.setAddress(a);
+                    exists = true;
+                    break;
+                }
+            }
+            
+            if (!exists) {
+                editedPatient.setAddress(address);
+                EntityUtils.save(address);
             }
         }
         
-        if (!exists) {
-            patient.setAddress(address);
-            EntityUtils.save(address);
-        }
-        
-        EntityUtils.save(patient);
+        EntityUtils.update(editedPatient);
         
         close();
     }

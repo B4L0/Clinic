@@ -43,19 +43,17 @@ public class FXMLManager {
         return loader.getController();
     }
     
-    public static Scene openSceneInNewWindow(String name, String windowTitle){
+    public static void openSceneInNewWindow(String name, String windowTitle){
         try {
             Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(Clinic.class.getResource("/view/" + name + ".fxml"))));
             Stage stage = new Stage();
             stage.setTitle(windowTitle);
             stage.setScene(scene);
-            stage.show();
-            return scene;
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        return null;
+    
     }
     
     

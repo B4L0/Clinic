@@ -98,10 +98,15 @@ public class PatientsController implements Initializable {
     
     public void newPatient() {
         FXMLManager.openSceneInNewWindow("new-patient", "Dodawanie pacjenta");
+        refresh();
     }
     
     public void editPatient() {
-    
+        if(table.getSelectionModel().getSelectedItem() != null){
+            EditPatientController.setEditedPatient(table.getSelectionModel().getSelectedItem());
+            FXMLManager.openSceneInNewWindow("edit-patient", "Edycja danych pacjenta");
+            refresh();
+        }
     }
     
     public void deletePatient() {

@@ -70,12 +70,14 @@ public class ExaminationsController implements Initializable {
     
     public void newExam() {
         FXMLManager.openSceneInNewWindow("new-examination", "Nowe badanie");
+        refresh();
     }
     
     public void editExam() {
         if(table.getSelectionModel().getSelectedItem() != null){
             EditExaminationController.setEditedExam(table.getSelectionModel().getSelectedItem());
             FXMLManager.openSceneInNewWindow("edit-examination", "Edycja badania");
+            refresh();
         }
     }
     
