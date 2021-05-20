@@ -7,8 +7,7 @@ import me.sobolewski.clinic.model.enums.ExaminationType;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,6 +29,6 @@ public class Examination implements Serializable {
     
     @ToString.Exclude
     @ManyToMany(mappedBy = "examinations")
-    private List<Visit> visits = new ArrayList<>();
+    private Set<Visit> visits;
     
 }

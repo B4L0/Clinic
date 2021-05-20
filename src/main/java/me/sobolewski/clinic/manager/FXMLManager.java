@@ -1,8 +1,11 @@
 package me.sobolewski.clinic.manager;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import me.sobolewski.clinic.Clinic;
 
@@ -31,6 +34,28 @@ public class FXMLManager {
             e.printStackTrace();
         }
         return scene;
+    }
+    
+    @SneakyThrows
+    public static <T> T getController(String name) {
+        FXMLLoader loader = new FXMLLoader(Clinic.class.getResource("/view/" + name + ".fxml"));
+        Parent p = loader.load();
+        return loader.getController();
+    }
+    
+    public static Scene openSceneInNewWindow(String name, String windowTitle){
+        try {
+            Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(Clinic.class.getResource("/view/" + name + ".fxml"))));
+            Stage stage = new Stage();
+            stage.setTitle(windowTitle);
+            stage.setScene(scene);
+            stage.show();
+            return scene;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
     

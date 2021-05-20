@@ -2,13 +2,17 @@ package me.sobolewski.clinic.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import me.sobolewski.clinic.Clinic;
 import me.sobolewski.clinic.account.LoginSession;
+import me.sobolewski.clinic.component.ErrorAlert;
 import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Doctor;
 import me.sobolewski.clinic.model.util.EntityUtils;
@@ -53,10 +57,8 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(FXMLManager.loadScene("start"));
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Nieprawidłowy login lub hasło!");
-            alert.showAndWait();
+            ErrorAlert alert = new ErrorAlert("Błąd", "Nieprawidłowy login lub hasło!");
+            alert.show();
             passwordField.setText("");
         }
     }

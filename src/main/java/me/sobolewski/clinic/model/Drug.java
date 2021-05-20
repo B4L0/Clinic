@@ -6,8 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,6 +23,6 @@ public class Drug implements Serializable {
     
     @ToString.Exclude
     @ManyToMany(mappedBy = "drugs")
-    private List<Prescription> prescriptions = new ArrayList<>();
+    private Set<Prescription> prescriptions;
     
 }

@@ -1,11 +1,13 @@
 package me.sobolewski.clinic.account;
 
+import lombok.experimental.UtilityClass;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
 
 import java.util.Random;
 
+@UtilityClass
 public class AuthData {
     
     private static final Random RANDOM = new Random();
@@ -27,6 +29,7 @@ public class AuthData {
         return gen.generatePassword(length, lowerCaseRule, upperCaseRule, digitRule);
     }
     
+    @UtilityClass
     public static class Login {
         
         private static final int LENGTH = 8;
@@ -37,6 +40,7 @@ public class AuthData {
         
     }
     
+    @UtilityClass
     public static class Password {
         
         private static final int LENGTH = 12;

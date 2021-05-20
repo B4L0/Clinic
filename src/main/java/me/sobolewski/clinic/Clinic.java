@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import me.sobolewski.clinic.account.LoginSession;
 import me.sobolewski.clinic.manager.FXMLManager;
-import me.sobolewski.clinic.model.Visit;
-import me.sobolewski.clinic.model.util.EntityUtils;
 
 import java.util.Objects;
 
@@ -19,8 +17,7 @@ public class Clinic extends Application {
     private static LoginSession loginSession;
     
     public static void main(String[] args) {
-        System.out.println(EntityUtils.getByID(Visit.class, 1));
-        //launch(args);
+        launch(args);
     }
     
     @Override

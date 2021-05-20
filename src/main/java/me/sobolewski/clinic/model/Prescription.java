@@ -6,8 +6,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -34,6 +33,6 @@ public class Prescription implements Serializable {
             joinColumns = @JoinColumn(name = "PRESC_ID"),
             inverseJoinColumns = @JoinColumn(name = "DRUG_ID")
     )
-    private List<Drug> drugs = new ArrayList<>();
-
+    private Set<Drug> drugs;
+    
 }

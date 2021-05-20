@@ -36,5 +36,16 @@ public class EntityUtils {
         session.save(entity);
     }
     
+    public <T> void delete(T entity){
+        session.getTransaction().begin();
+        session.delete(entity);
+        session.getTransaction().commit();
+    }
+    
+    public <T> void update(T entity){
+        session.getTransaction().begin();
+        session.update(entity);
+        session.getTransaction().commit();
+    }
     
 }

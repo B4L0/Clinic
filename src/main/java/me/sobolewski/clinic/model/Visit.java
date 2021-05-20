@@ -2,13 +2,12 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -44,6 +43,6 @@ public class Visit implements Serializable {
             joinColumns = @JoinColumn(name = "VISIT_ID"),
             inverseJoinColumns = @JoinColumn(name = "EXAM_ID")
     )
-    private List<Examination> examinations;
+    private Set<Examination> examinations;
     
 }

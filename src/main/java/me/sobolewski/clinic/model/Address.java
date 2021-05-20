@@ -6,7 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,8 +30,8 @@ public class Address implements Serializable {
     
     @ToString.Exclude
     @OneToMany(mappedBy = "address")
-    private List<Doctor> doctors;
+    private Set<Doctor> doctors;
     @ToString.Exclude
     @OneToMany(mappedBy = "address")
-    private List<Patient> patients;
+    private Set<Patient> patients;
 }
