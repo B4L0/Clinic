@@ -30,11 +30,11 @@ public class StartController implements Initializable {
     public Label visitsLabel;
     public Label loggedLabel;
     public Button startVisitButton;
-    public MenuButton profileButton;
     public MenuItem logoutMenuItem;
     public Button patientsButton;
     public Button prescriptionsButton;
     public Button examinationsButton;
+    public SplitMenuButton profileButton;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,5 +91,10 @@ public class StartController implements Initializable {
     public void patients(ActionEvent actionEvent) {
         Stage stage = (Stage) patientsButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("patients"));
+    }
+    
+    public void profile(ActionEvent actionEvent) {
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("profile"));
     }
 }

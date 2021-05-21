@@ -102,7 +102,7 @@ public class RegisterController implements Initializable {
         
     }
     
-    public void back(ActionEvent actionEvent) {
+    public void back() {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("login"));
     }
