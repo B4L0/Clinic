@@ -41,7 +41,7 @@ public class NewPatientController implements Initializable {
         address.setStreet(streetField.getText());
         address.setAppNumber(numberField.getText());
         address.setZip(zipField.getText());
-        
+    
         Patient patient = new Patient();
         patient.setFirstName(firstNameField.getText());
         patient.setLastName(lastNameField.getText());

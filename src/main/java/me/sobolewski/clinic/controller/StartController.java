@@ -48,7 +48,8 @@ public class StartController implements Initializable {
     
     
     public void startVisit() {
-    
+        Stage stage = (Stage) startVisitButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("new-visit"));
     }
     
     private void initClock() {

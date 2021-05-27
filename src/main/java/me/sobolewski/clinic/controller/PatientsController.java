@@ -56,16 +56,16 @@ public class PatientsController implements Initializable {
             String city = cellData.getValue().getAddress().getCity();
             return new SimpleStringProperty(city);
         });
-        streetColumn.setCellValueFactory(addressStringCellDataFeatures -> {
-            String street = addressStringCellDataFeatures.getValue().getAddress().getStreet();
+        streetColumn.setCellValueFactory(cellData -> {
+            String street = cellData.getValue().getAddress().getStreet();
             return new SimpleStringProperty(street);
         });
-        numberColumn.setCellValueFactory(addressStringCellDataFeatures -> {
-            String number = addressStringCellDataFeatures.getValue().getAddress().getAppNumber();
+        numberColumn.setCellValueFactory(cellData -> {
+            String number = cellData.getValue().getAddress().getAppNumber();
             return new SimpleStringProperty(number);
         });
-        zipColumn.setCellValueFactory(addressStringCellDataFeatures -> {
-            String zip = addressStringCellDataFeatures.getValue().getAddress().getZip();
+        zipColumn.setCellValueFactory(cellData -> {
+            String zip = cellData.getValue().getAddress().getZip();
             return new SimpleStringProperty(zip);
         });
         
