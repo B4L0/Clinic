@@ -2,12 +2,15 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import me.sobolewski.clinic.model.enums.Specialization;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -38,5 +41,9 @@ public class Doctor implements Serializable {
     private String login;
     @Column(name = "PASSWORD")
     private String password;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "doctor")
+    private Set<Visit> visits = new HashSet<>();
     
 }

@@ -175,4 +175,12 @@ public class ProfileController implements Initializable {
         stage.setScene(FXMLManager.loadScene("login"));
         Clinic.setLoginSession(null);
     }
+    
+    public void history() {
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("history"));
+    }
+    
+    public void stats() {
+    }
 }

@@ -2,11 +2,14 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -32,5 +35,9 @@ public class Patient implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ADDRESS", referencedColumnName="ADDRESS_ID")
     private Address address;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "patient")
+    private Set<Visit> visits = new HashSet<>();
     
 }

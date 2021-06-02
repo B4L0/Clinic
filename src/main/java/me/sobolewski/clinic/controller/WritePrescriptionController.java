@@ -26,7 +26,6 @@ public class WritePrescriptionController implements Initializable {
     
     private static ObservableList<Drug> drugList;
     
-    public Button backButton;
     public ListView<Drug> drugListView;
     public TextField searchField;
     public Button searchButton;
@@ -52,11 +51,6 @@ public class WritePrescriptionController implements Initializable {
         
         drugListView.setCellFactory(WritePrescriptionController::drugNameCall);
         prescDrugListView.setCellFactory(WritePrescriptionController::drugNameCall);
-    }
-    
-    public void back() {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.setScene(FXMLManager.loadScene("start"));
     }
     
     public void onEnter(KeyEvent keyEvent) {

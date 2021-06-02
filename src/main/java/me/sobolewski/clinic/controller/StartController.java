@@ -31,9 +31,10 @@ public class StartController implements Initializable {
     public Button startVisitButton;
     public MenuItem logoutMenuItem;
     public Button patientsButton;
-    public Button prescriptionsButton;
     public Button examinationsButton;
     public SplitMenuButton profileButton;
+    public MenuItem historyMenuItem;
+    public MenuItem statsMenuItem;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,9 +43,7 @@ public class StartController implements Initializable {
         phoneLabel.setText(phoneLabel.getText() + loggedDoctor.getPhoneNumber());
         initClock();
         visitsLabel.setText("Wizyty w sesji: " + Clinic.getLoginSession().getVisitsDone());
-        
     }
-    
     
     public void startVisit() {
         Stage stage = (Stage) startVisitButton.getScene().getWindow();
@@ -69,11 +68,9 @@ public class StartController implements Initializable {
     }
     
     public void logout() {
-        
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("login"));
         Clinic.setLoginSession(null);
-        
     }
     
     public void examinations() {
@@ -89,5 +86,13 @@ public class StartController implements Initializable {
     public void profile() {
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("profile"));
+    }
+    
+    public void history() {
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("history"));
+    }
+    
+    public void stats() {
     }
 }

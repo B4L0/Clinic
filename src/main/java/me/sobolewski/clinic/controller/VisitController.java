@@ -100,20 +100,22 @@ public class VisitController implements Initializable {
     }
     
     public void finishVisit() {
-        Prescription prescription = new Prescription();
-        prescription.setDoctor(Clinic.getCurrentVisit().getDoctor());
-        prescription.setPatient(Clinic.getCurrentVisit().getPatient());
-        prescription.setIssueDate(LocalDate.now());
-        
-        for (Drug d : Clinic.getCurrentVisit().getPrescription().getDrugs()) {
-            prescription.addDrug(d);
+        if(Clinic.getCurrentVisit().getPrescription() != null){
+            Prescription prescription = new Prescription();
+            prescription.setDoctor(Clinic.getCurrentVisit().getDoctor());
+            prescription.setPatient(Clinic.getCurrentVisit().getPatient());
+            prescription.setIssueDate(LocalDate.now());
+    
+            for (Drug d : Clinic.getCurrentVisit().getPrescription().getDrugs()) {
+                prescription.addDrug(d);
+            }
+            visit.setPrescription(prescription);
         }
         
         visit.setDoctor(Clinic.getCurrentVisit().getDoctor());
         visit.setPatient(Clinic.getCurrentVisit().getPatient());
         visit.setDate(Clinic.getCurrentVisit().getStartTime().toLocalDate());
         visit.setStartTime(Clinic.getCurrentVisit().getStartTime().toLocalTime());
-        visit.setPrescription(prescription);
         visit.setFinishTime(LocalDateTime.now().toLocalTime());
         
         for (Examination e : Clinic.getCurrentVisit().getExaminations()) {
@@ -123,6 +125,8 @@ public class VisitController implements Initializable {
         ConfirmationAlert alert = new ConfirmationAlert("Potwierdzenie", "Czy jesteś pewny?");
         alert.showAndWait().ifPresent(type -> {
             if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
+                visit.getDoctor().getVisits().add(visit);
+                visit.getPatient().getVisits().add(visit);
                 EntityUtils.save(visit);
                 Clinic.getLoginSession().setVisitsDone(Clinic.getLoginSession().getVisitsDone() + 1);
                 Stage stage = (Stage) finishVisitButton.getScene().getWindow();

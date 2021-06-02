@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.sobolewski.clinic.controller.HistoryController">
+   <children>
+      <ToolBar prefHeight="100.0" prefWidth="1000.0">
+         <items>
+            <Label text="Historia">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <HBox visible="false" HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Powrót" />
+         </items>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </ToolBar>
+      <TableView fx:id="table" layoutY="100.0" prefHeight="500.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Data" />
+          <TableColumn fx:id="patientColumn" prefWidth="252.00001525878906" text="Pacjent">
+               <columns>
+                  <TableColumn fx:id="firstNameColumn" prefWidth="95.0" text="Imię" />
+                  <TableColumn fx:id="lastNameColumn" prefWidth="100.0" text="Nazwisko" />
+                  <TableColumn fx:id="PESELColumn" prefWidth="85.0" text="PESEL" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="startTimeColumn" text="Czas rozp." />
+            <TableColumn fx:id="finishTimeColumn" prefWidth="72.0" text="Czas zak." />
+            <TableColumn fx:id="examinationsColumn" prefWidth="250.0" text="Wykonane badania" />
+            <TableColumn fx:id="drugsColumn" prefWidth="250.0" text="Przepisane leki" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -18,7 +18,6 @@
                </padding>
             </Label>
             <HBox visible="false" HBox.hgrow="ALWAYS" />
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Powrót" />
          </items>
          <padding>
             <Insets right="20.0" />
