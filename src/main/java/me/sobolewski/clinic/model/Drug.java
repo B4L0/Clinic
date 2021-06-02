@@ -2,11 +2,9 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Data
 @Entity
@@ -20,9 +18,4 @@ public class Drug implements Serializable {
     private Long id;
     @Column(name = "NAME")
     private String name;
-    
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "drugs")
-    private Set<Prescription> prescriptions;
-    
 }

@@ -7,8 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import me.sobolewski.clinic.Clinic;
+import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Examination;
 import me.sobolewski.clinic.model.Patient;
 
@@ -21,8 +23,7 @@ import java.util.ResourceBundle;
 
 public class VisitController implements Initializable {
     
-    private static Patient visitor = new Patient();
-    private static List<Examination> exams = new ArrayList<>();
+    private static final List<Examination> exams = new ArrayList<>();
     
     public Label durationLabel;
     public Label firstNameLabel;
@@ -41,7 +42,7 @@ public class VisitController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        visitor = Clinic.getCurrentVisit().getPatient();
+        Patient visitor = Clinic.getCurrentVisit().getPatient();
         
         firstNameLabel.setText("Imię: " + visitor.getFirstName());
         lastNameLabel.setText("Nazwisko: " + visitor.getLastName());
@@ -53,8 +54,11 @@ public class VisitController implements Initializable {
         numberLabel.setText("Nr mieszkania: " + visitor.getAddress().getAppNumber());
         zipLabel.setText("Kod pocztowy: " + visitor.getAddress().getZip());
         
-        
         initDuration();
+        
+        writePrescriptionButton.setDisable(Clinic.getCurrentVisit().getPrescription() != null);
+        
+        System.out.println(Clinic.getCurrentVisit().getPrescription());
     }
     
     private void initDuration() {
@@ -75,10 +79,11 @@ public class VisitController implements Initializable {
     public void doExamination() {
     
     
-    
     }
     
     public void writePrescription() {
+        Stage stage = (Stage) writePrescriptionButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("write-prescription"));
     }
     
     public void finishVisit() {

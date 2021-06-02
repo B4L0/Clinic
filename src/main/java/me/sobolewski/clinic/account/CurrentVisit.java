@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NonNull;
 import me.sobolewski.clinic.model.Doctor;
 import me.sobolewski.clinic.model.Patient;
+import me.sobolewski.clinic.model.Prescription;
 
 import java.time.LocalDateTime;
 
@@ -16,5 +17,6 @@ public class CurrentVisit {
     private Patient patient;
     @NonNull
     private LocalDateTime startTime;
+    private Prescription prescription;
     
 }
