@@ -2,9 +2,12 @@ package me.sobolewski.clinic.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,4 +21,9 @@ public class Drug implements Serializable {
     private Long id;
     @Column(name = "NAME")
     private String name;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "drugs")
+    private Set<Prescription> prescriptions = new HashSet<>();
+    
 }

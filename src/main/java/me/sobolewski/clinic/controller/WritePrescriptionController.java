@@ -35,17 +35,6 @@ public class WritePrescriptionController implements Initializable {
     public Button removeButton;
     public Button writeButton;
     
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        drugList = FXCollections.observableArrayList(EntityUtils.getList(Drug.class));
-        drugListView.setItems(drugList);
-        
-        drugListView.setCellFactory(WritePrescriptionController::drugNameCall);
-        prescDrugListView.setCellFactory(WritePrescriptionController::drugNameCall);
-    }
-    
     private static ListCell<Drug> drugNameCall(ListView<Drug> drugListView) {
         return new ListCell<>() {
             @Override
@@ -54,6 +43,15 @@ public class WritePrescriptionController implements Initializable {
                 setText(drug == null ? null : drug.getName());
             }
         };
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        drugList = FXCollections.observableArrayList(EntityUtils.getList(Drug.class));
+        drugListView.setItems(drugList);
+        
+        drugListView.setCellFactory(WritePrescriptionController::drugNameCall);
+        prescDrugListView.setCellFactory(WritePrescriptionController::drugNameCall);
     }
     
     public void back() {
@@ -88,7 +86,7 @@ public class WritePrescriptionController implements Initializable {
     
     public void add() {
         if (drugListView.getSelectionModel().getSelectedItem() != null) {
-            if(!prescDrugListView.getItems().contains(drugListView.getSelectionModel().getSelectedItem())){
+            if (!prescDrugListView.getItems().contains(drugListView.getSelectionModel().getSelectedItem())) {
                 prescDrugListView.getItems().add(drugListView.getSelectionModel().getSelectedItem());
             }
         }

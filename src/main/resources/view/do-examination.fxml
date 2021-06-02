@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.sobolewski.clinic.controller.DoExaminationController">
+   <children>
+      <ToolBar prefHeight="100.0" prefWidth="600.0">
+         <items>
+            <Label text="Wykonywanie badania">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <HBox visible="false" HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Powrót" />
+         </items>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </ToolBar>
+      <TableView fx:id="table" layoutY="100.0" prefHeight="182.0" prefWidth="600.0" tableMenuButtonVisible="true">
+         <columns>
+            <TableColumn fx:id="IDColumn" editable="false" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="nameColumn" editable="false" prefWidth="150.0" text="Nazwa" />
+            <TableColumn fx:id="typeColumn" editable="false" prefWidth="150.0" text="Typ" />
+            <TableColumn fx:id="descColumn" editable="false" prefWidth="297.5999694824219" text="Opis" />
+         </columns>
+      </TableView>
+      <Button fx:id="doExamButton" layoutX="351.0" layoutY="302.0" mnemonicParsing="false" onAction="#doExam" prefHeight="70.0" prefWidth="200.0" text="Wykonaj" />
+      <TextField fx:id="searchField" layoutX="91.0" layoutY="302.0" onKeyPressed="#onEnter" promptText="Wyszukiwanie" />
+      <Button fx:id="searchButton" layoutX="130.0" layoutY="337.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="70.0" text="Szukaj" />
+   </children>
+</AnchorPane>

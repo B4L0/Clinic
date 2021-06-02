@@ -7,6 +7,7 @@ import me.sobolewski.clinic.model.enums.ExaminationType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,9 +27,9 @@ public class Examination implements Serializable {
     private ExaminationType type;
     @Column(name = "DESCRIPTION")
     private String description;
-    
+    @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @ManyToMany(mappedBy = "examinations")
-    private Set<Visit> visits;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "examinations")
+    private Set<Visit> visits = new HashSet<>();
     
 }

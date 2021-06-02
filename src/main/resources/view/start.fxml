@@ -24,7 +24,6 @@
                   <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logout" text="Wyloguj" />
                </items>
             </SplitMenuButton>
-            <Button fx:id="prescriptionsButton" mnemonicParsing="false" onAction="#prescriptions" text="Recepty" />
             <Button fx:id="examinationsButton" mnemonicParsing="false" onAction="#examinations" text="Badania" />
           <Button fx:id="patientsButton" mnemonicParsing="false" onAction="#patients" text="Pacjenci" />
         </items>

@@ -3,7 +3,6 @@ package me.sobolewski.clinic.controller;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -42,7 +41,7 @@ public class StartController implements Initializable {
         specLabel.setText(specLabel.getText() + loggedDoctor.getSpecialization());
         phoneLabel.setText(phoneLabel.getText() + loggedDoctor.getPhoneNumber());
         initClock();
-        
+        visitsLabel.setText("Wizyty w sesji: " + Clinic.getLoginSession().getVisitsDone());
         
     }
     
@@ -53,13 +52,10 @@ public class StartController implements Initializable {
     }
     
     private void initClock() {
-        
-        //TODO ilość wizyt w sesji
-        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(clockLabel.getText());
         Timeline clock = new Timeline(
                 new KeyFrame(Duration.ZERO, e -> {
-                    if(Clinic.getLoginSession() != null){
+                    if (Clinic.getLoginSession() != null) {
                         clockLabel.setText(LocalDateTime.now().format(formatter));
                         loggedLabel.setText("Zalogowano: "
                                 + ChronoUnit.MINUTES.between(Clinic.getLoginSession().getLoginTime(), LocalDateTime.now())
@@ -72,7 +68,7 @@ public class StartController implements Initializable {
         clock.play();
     }
     
-    public void logout(ActionEvent actionEvent) {
+    public void logout() {
         
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("login"));
@@ -80,21 +76,17 @@ public class StartController implements Initializable {
         
     }
     
-    public void prescriptions(ActionEvent actionEvent) {
-    
-    }
-    
-    public void examinations(ActionEvent actionEvent) {
+    public void examinations() {
         Stage stage = (Stage) examinationsButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("examinations"));
     }
     
-    public void patients(ActionEvent actionEvent) {
+    public void patients() {
         Stage stage = (Stage) patientsButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("patients"));
     }
     
-    public void profile(ActionEvent actionEvent) {
+    public void profile() {
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("profile"));
     }

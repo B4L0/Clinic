@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,12 +28,22 @@ public class Prescription implements Serializable {
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
     
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
             name = "PRESCRIPTIONS_DRUGS",
             joinColumns = @JoinColumn(name = "PRESC_ID"),
             inverseJoinColumns = @JoinColumn(name = "DRUG_ID")
     )
-    private Set<Drug> drugs;
+    private Set<Drug> drugs = new HashSet<>();
     
+    public void addDrug(Drug drug) {
+        this.drugs.add(drug);
+        drug.getPrescriptions().add(this);
+    }
+    
+    public void removeDrug(Drug drug) {
+        this.drugs.remove(drug);
+        drug.getPrescriptions().remove(this);
+    }
 }

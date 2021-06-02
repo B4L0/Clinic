@@ -13,6 +13,6 @@ public class LoginSession {
     private Doctor loggedDoctor;
     @NonNull
     private LocalDateTime loginTime;
-    private int visitsDone;
+    private int visitsDone = 0;
     
 }

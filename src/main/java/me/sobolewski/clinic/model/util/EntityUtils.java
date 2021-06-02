@@ -33,7 +33,9 @@ public class EntityUtils {
     }
     
     public <T> void save(T entity) {
+        session.getTransaction().begin();
         session.save(entity);
+        session.getTransaction().commit();
     }
     
     public <T> void delete(T entity){
