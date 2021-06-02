@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.sobolewski.clinic.controller.VisitController">
+   <children>
+      <ToolBar prefHeight="100.0" prefWidth="800.0">
+         <items>
+            <Label text="Wizyta">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <HBox visible="false" HBox.hgrow="ALWAYS" />
+         </items>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </ToolBar>
+      <Label fx:id="durationLabel" layoutX="56.0" layoutY="439.0" text="Czas trwania wizyty: 0 minut" />
+      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="115.0" prefHeight="311.0" prefWidth="290.0" text="Pacjent">
+         <content>
+            <VBox prefHeight="285.0" prefWidth="254.0" spacing="10.0">
+               <children>
+                  <Label fx:id="firstNameLabel" text="Imię: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastNameLabel" text="Nazwisko: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="PESELLabel" text="PESEL: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="phoneNumberLabel" text="Nr telefonu: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="emailLabel" text="Email: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cityLabel" text="Miasto: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="streetLabel" text="Ulica: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberLabel" text="Nr mieszkania: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="zipLabel" text="Kod pocztowy: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <Button fx:id="doExaminationButton" layoutX="325.0" layoutY="241.0" mnemonicParsing="false" onAction="#doExamination" prefHeight="58.0" prefWidth="149.0" text="Wykonaj badanie" />
+      <Button fx:id="writePrescriptionButton" layoutX="325.0" layoutY="457.0" mnemonicParsing="false" onAction="#writePrescription" prefHeight="58.0" prefWidth="149.0" text="Wypisz receptę" />
+      <Button fx:id="finishVisitButton" layoutX="566.0" layoutY="457.0" mnemonicParsing="false" onAction="#finishVisit" prefHeight="58.0" prefWidth="149.0" text="Zakończ wizytę" />
+      <ListView fx:id="examinationsListView" layoutX="496.0" layoutY="115.0" prefHeight="311.0" prefWidth="290.0" />
+   </children>
+</AnchorPane>
