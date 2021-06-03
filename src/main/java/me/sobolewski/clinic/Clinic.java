@@ -27,12 +27,10 @@ public class Clinic extends Application {
     
     @Override
     public void start(Stage stage) {
-        
         stage.setScene(FXMLManager.getStartScene());
         stage.setTitle("Przychodnia");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
         stage.show();
-        
     }
     
 }

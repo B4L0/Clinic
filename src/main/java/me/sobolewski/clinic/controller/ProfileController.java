@@ -182,5 +182,7 @@ public class ProfileController implements Initializable {
     }
     
     public void stats() {
+        Stage stage = (Stage) statsButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("stats"));
     }
 }

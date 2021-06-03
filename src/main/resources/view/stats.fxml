@@ -35,7 +35,7 @@
                             <CategoryAxis autoRanging="false" side="BOTTOM" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis autoRanging="false" minorTickCount="1" side="LEFT" upperBound="50.0" />
+                            <NumberAxis minorTickCount="1" side="LEFT" upperBound="50.0" />
                           </yAxis>
                         </LineChart>
                      </children>
@@ -51,21 +51,41 @@
                               <CategoryAxis autoRanging="false" side="BOTTOM" />
                            </xAxis>
                            <yAxis>
-                              <NumberAxis autoRanging="false" minorTickCount="1" side="LEFT" upperBound="50.0" />
+                              <NumberAxis minorTickCount="1" side="LEFT" upperBound="50.0" />
                            </yAxis>
                         </LineChart>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Badania">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="examinationsChart" layoutX="125.0" layoutY="17.0" legendVisible="false" prefHeight="335.0" prefWidth="550.0" title="Najczęściej wykonywane badania">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Leki">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="drugsChart" layoutX="124.0" layoutY="17.0" legendVisible="false" prefHeight="335.0" prefWidth="550.0" title="Najczęściej przepisywane leki">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

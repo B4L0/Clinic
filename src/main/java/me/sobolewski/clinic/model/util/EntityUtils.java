@@ -3,6 +3,7 @@ package me.sobolewski.clinic.model.util;
 import lombok.experimental.UtilityClass;
 import me.sobolewski.clinic.manager.DBManager;
 import me.sobolewski.clinic.model.Doctor;
+import oracle.jdbc.OracleCallableStatement;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,10 +12,12 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Types;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 @UtilityClass
 public class EntityUtils {
@@ -44,19 +47,19 @@ public class EntityUtils {
         session.getTransaction().commit();
     }
     
-    public <T> void delete(T entity){
+    public <T> void delete(T entity) {
         session.getTransaction().begin();
         session.delete(entity);
         session.getTransaction().commit();
     }
     
-    public <T> void update(T entity){
+    public <T> void update(T entity) {
         session.getTransaction().begin();
         session.update(entity);
         session.getTransaction().commit();
     }
     
-    public int getVisitsByDay(LocalDate date, Doctor doctor){
+    public int getVisitsByDay(LocalDate date, Doctor doctor) {
         AtomicInteger result = new AtomicInteger();
         
         session.doWork(connection -> {
@@ -69,6 +72,19 @@ public class EntityUtils {
         });
         
         return result.get();
+    }
+    
+    public ResultSet getTopExaminations(Doctor doctor){
+        final AtomicReference<ResultSet> rs = new AtomicReference<>();
+        
+        session.doWork(connection -> {
+            CallableStatement call = connection.prepareCall("{ ? = call GET_TOP_EXAMINATIONS(?) }");
+            call.registerOutParameter(1, Types.REF_CURSOR);
+            call.setLong(2, doctor.getId());
+            call.execute();
+            rs.set(((OracleCallableStatement) call).getCursor(1));
+        });
+        return rs.get();
     }
     
 }
