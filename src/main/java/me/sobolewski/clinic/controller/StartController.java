@@ -94,5 +94,7 @@ public class StartController implements Initializable {
     }
     
     public void stats() {
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("stats"));
     }
 }

@@ -23,36 +23,12 @@ public class Clinic extends Application {
     
     public static void main(String[] args) {
         launch(args);
-    
-//        Doctor doctor = EntityUtils.getByID(Doctor.class, 1);
-//        Patient patient = EntityUtils.getByID(Patient.class, 1);
-//
-//        Prescription prescription = new Prescription();
-//        prescription.setDoctor(doctor);
-//        prescription.setPatient(patient);
-//        prescription.setIssueDate(LocalDate.now());
-//        prescription.addDrug(EntityUtils.getByID(Drug.class, 1));
-//        prescription.addDrug(EntityUtils.getByID(Drug.class, 2));
-//
-//        Visit visit = new Visit();
-//        visit.setDoctor(doctor);
-//        visit.setPatient(patient);
-//        visit.setStartTime(LocalTime.now());
-//        visit.setFinishTime(LocalTime.now());
-//        visit.setDate(LocalDate.now());
-//        visit.setPrescription(prescription);
-//        visit.addExamination(EntityUtils.getByID(Examination.class, 1));
-//        visit.addExamination(EntityUtils.getByID(Examination.class, 21));
-//
-//
-//        EntityUtils.save(visit);
-        
     }
     
     @Override
     public void start(Stage stage) {
         
-        stage.setScene(FXMLManager.loadScene("login"));
+        stage.setScene(FXMLManager.getStartScene());
         stage.setTitle("Przychodnia");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
         stage.show();

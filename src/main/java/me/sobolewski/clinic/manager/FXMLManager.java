@@ -1,7 +1,6 @@
 package me.sobolewski.clinic.manager;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -39,7 +38,7 @@ public class FXMLManager {
     @SneakyThrows
     public static <T> T getController(String name) {
         FXMLLoader loader = new FXMLLoader(Clinic.class.getResource("/view/" + name + ".fxml"));
-        Parent p = loader.load();
+        loader.load();
         return loader.getController();
     }
     

@@ -2,13 +2,19 @@ package me.sobolewski.clinic.model.util;
 
 import lombok.experimental.UtilityClass;
 import me.sobolewski.clinic.manager.DBManager;
+import me.sobolewski.clinic.model.Doctor;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.Date;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @UtilityClass
 public class EntityUtils {
@@ -48,6 +54,21 @@ public class EntityUtils {
         session.getTransaction().begin();
         session.update(entity);
         session.getTransaction().commit();
+    }
+    
+    public int getVisitsByDay(LocalDate date, Doctor doctor){
+        AtomicInteger result = new AtomicInteger();
+        
+        session.doWork(connection -> {
+            CallableStatement call = connection.prepareCall("{ ? = call GET_VISIT_COUNT_BY_DAY(?,?) }");
+            call.registerOutParameter(1, Types.INTEGER);
+            call.setDate(2, Date.valueOf(date));
+            call.setLong(3, doctor.getId());
+            call.execute();
+            result.set(call.getInt(1));
+        });
+        
+        return result.get();
     }
     
 }
