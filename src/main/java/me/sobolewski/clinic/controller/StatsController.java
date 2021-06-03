@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import me.sobolewski.clinic.Clinic;
 import me.sobolewski.clinic.manager.FXMLManager;
+import me.sobolewski.clinic.model.Drug;
 import me.sobolewski.clinic.model.Examination;
 import me.sobolewski.clinic.model.util.EntityUtils;
 
@@ -38,6 +39,7 @@ public class StatsController implements Initializable {
         initDaysChart(visits30DaysChart, 30);
         
         initExaminationsChart();
+        initDrugsChart();
     }
     
     private void initDaysChart(LineChart<String, Integer> chart, int days) {
@@ -71,7 +73,8 @@ public class StatsController implements Initializable {
     }
     
     private void initExaminationsChart(){
-        ResultSet rs = EntityUtils.getTopExaminations(Clinic.getLoginSession().getLoggedDoctor());
+        int amount = 5;
+        ResultSet rs = EntityUtils.getTopExaminations(Clinic.getLoginSession().getLoggedDoctor(), amount);
         Map<String, Integer> rsMap = new HashMap<>();
         try{
             while(rs.next()){
@@ -91,7 +94,7 @@ public class StatsController implements Initializable {
         examinationsChart.getXAxis().setLabel("Badanie");
         examinationsChart.getYAxis().setLabel("Wykonano razy");
         
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < amount; i++){
             series.getData().add(new XYChart.Data<>(
                     rsMap.keySet().stream().toList().get(i),
                     rsMap.get(rsMap.keySet().stream().toList().get(i))
@@ -99,7 +102,38 @@ public class StatsController implements Initializable {
         }
         
         examinationsChart.getData().add(series);
-        
+    }
+    
+    private void initDrugsChart(){
+        int amount = 5;
+        ResultSet rs = EntityUtils.getTopDrugs(Clinic.getLoginSession().getLoggedDoctor(), amount);
+        Map<String, Integer> rsMap = new HashMap<>();
+        try{
+            while(rs.next()){
+                rsMap.put(
+                        EntityUtils.getByID(Drug.class, Integer.parseInt(rs.getString(1))).getName(),
+                        rs.getInt(2)
+                );
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    
+        ((CategoryAxis) drugsChart.getXAxis()).setCategories(FXCollections.observableArrayList(rsMap.keySet()));
+    
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+    
+        drugsChart.getXAxis().setLabel("Lek");
+        drugsChart.getYAxis().setLabel("Przepisano razy");
+    
+        for(int i = 0; i < (Math.min(rsMap.keySet().size(), amount)); i++){
+            series.getData().add(new XYChart.Data<>(
+                    rsMap.keySet().stream().toList().get(i),
+                    rsMap.get(rsMap.keySet().stream().toList().get(i))
+            ));
+        }
+    
+        drugsChart.getData().add(series);
     }
     
     public void back() {

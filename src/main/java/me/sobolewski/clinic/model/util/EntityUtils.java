@@ -74,13 +74,28 @@ public class EntityUtils {
         return result.get();
     }
     
-    public ResultSet getTopExaminations(Doctor doctor){
+    public ResultSet getTopExaminations(Doctor doctor, int amount){
         final AtomicReference<ResultSet> rs = new AtomicReference<>();
         
         session.doWork(connection -> {
-            CallableStatement call = connection.prepareCall("{ ? = call GET_TOP_EXAMINATIONS(?) }");
+            CallableStatement call = connection.prepareCall("{ ? = call GET_TOP_EXAMINATIONS(?, ?) }");
             call.registerOutParameter(1, Types.REF_CURSOR);
             call.setLong(2, doctor.getId());
+            call.setInt(3, amount);
+            call.execute();
+            rs.set(((OracleCallableStatement) call).getCursor(1));
+        });
+        return rs.get();
+    }
+    
+    public ResultSet getTopDrugs(Doctor doctor, int amount){
+        final AtomicReference<ResultSet> rs = new AtomicReference<>();
+    
+        session.doWork(connection -> {
+            CallableStatement call = connection.prepareCall("{ ? = call GET_TOP_DRUGS(?, ?) }");
+            call.registerOutParameter(1, Types.REF_CURSOR);
+            call.setLong(2, doctor.getId());
+            call.setInt(3, amount);
             call.execute();
             rs.set(((OracleCallableStatement) call).getCursor(1));
         });
