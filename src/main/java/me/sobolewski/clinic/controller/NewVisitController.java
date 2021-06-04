@@ -143,7 +143,6 @@ public class NewVisitController implements Initializable {
         }
         if(visitor != null){
             Clinic.setCurrentVisit(new CurrentVisit(Clinic.getLoginSession().getLoggedDoctor(), visitor, LocalDateTime.now()));
-            System.out.println(visitor);
             Stage stage = (Stage) startVisistButton.getScene().getWindow();
             stage.setScene(FXMLManager.loadScene("visit"));
             

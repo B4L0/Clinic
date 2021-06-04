@@ -78,7 +78,7 @@ public class NewPatientController implements Initializable {
         return !firstNameField.getText().equals("") &&
                 !lastNameField.getText().equals("") &&
                 !PESELField.getText().equals("") &&
-                !numberField.getText().equals("") &&
+                !phoneField.getText().equals("") &&
                 !cityField.getText().equals("") &&
                 !streetField.getText().equals("") &&
                 !numberField.getText().equals("") &&

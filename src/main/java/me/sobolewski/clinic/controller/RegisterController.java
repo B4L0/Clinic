@@ -2,16 +2,17 @@ package me.sobolewski.clinic.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import me.sobolewski.clinic.Clinic;
 import me.sobolewski.clinic.account.AuthData;
 import me.sobolewski.clinic.account.InputValidation;
+import me.sobolewski.clinic.account.LoginSession;
+import me.sobolewski.clinic.component.InformationAlert;
 import me.sobolewski.clinic.manager.FXMLManager;
 import me.sobolewski.clinic.model.Address;
 import me.sobolewski.clinic.model.Doctor;
@@ -19,6 +20,7 @@ import me.sobolewski.clinic.model.enums.Specialization;
 import me.sobolewski.clinic.model.util.EntityUtils;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -39,14 +41,16 @@ public class RegisterController implements Initializable {
     public TextField zipField;
     public ComboBox<Specialization> specCombo;
     public Label errorMsg;
+    public VBox pane;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        registerButton.setDisable(true);
         specCombo.setItems(SPECS);
         
         phoneNumberField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if (!InputValidation.isValidPhoneNumber(newValue)) {
-                if(!phoneNumberField.getStyleClass().contains("wrong-input")){
+                if (!phoneNumberField.getStyleClass().contains("wrong-input")) {
                     phoneNumberField.getStyleClass().add("wrong-input");
                 }
             } else {
@@ -56,7 +60,7 @@ public class RegisterController implements Initializable {
         
         emailField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if (!InputValidation.isValidEmail(newValue)) {
-                if(!emailField.getStyleClass().contains("wrong-input")){
+                if (!emailField.getStyleClass().contains("wrong-input")) {
                     emailField.getStyleClass().add("wrong-input");
                 }
             } else {
@@ -64,9 +68,14 @@ public class RegisterController implements Initializable {
             }
         });
         
+        pane.addEventHandler(KeyEvent.ANY, event -> registerButton.setDisable((
+                emailField.getStyleClass().contains("wrong-input") ||
+                phoneNumberField.getStyleClass().contains("wrong-input"))
+                || !filled())
+        );
     }
     
-    public void register(ActionEvent actionEvent) {
+    public void register() {
         
         boolean exists = false;
         
@@ -85,25 +94,61 @@ public class RegisterController implements Initializable {
         doctor.setLogin(AuthData.Login.generate());
         doctor.setPassword(AuthData.Password.generate());
         
-        for(Address a : EntityUtils.getList(Address.class)){
-            if(address.equals(a)){
+        for (Address a : EntityUtils.getList(Address.class)) {
+            if (address.equals(a)) {
                 doctor.setAddress(a);
                 exists = true;
                 break;
             }
         }
         
-        if(!exists){
+        if (!exists) {
             doctor.setAddress(address);
             EntityUtils.save(address);
         }
         
         EntityUtils.save(doctor);
+    
+        TextArea textArea = new TextArea("""
+                Pomyślnie zarejestrowano!
         
+                Wygenerowane dane do logowania:
+                Login:\040""" + doctor.getLogin() + """
+                
+                Hasło:\040""" + doctor.getPassword() + """
+                
+                
+                Dane można zmienić w panelu zarządzania profilem
+                Zostaniesz automatycznie zalogowany
+                """);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+    
+        InformationAlert alert = new InformationAlert("Zarejestrowano", "");
+        alert.getDialogPane().setContent(textArea);
+        
+        alert.showAndWait();
+        
+        Clinic.setLoginSession(new LoginSession(doctor, LocalDateTime.now()));
+        
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(FXMLManager.loadScene("start"));
     }
     
     public void back() {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(FXMLManager.loadScene("login"));
+    }
+    
+    private boolean filled() {
+        return !firstNameField.getText().equals("") &&
+                !lastNameField.getText().equals("") &&
+                !phoneNumberField.getText().equals("") &&
+                !emailField.getText().equals("") &&
+                !cityField.getText().equals("") &&
+                !streetField.getText().equals("") &&
+                !numberField.getText().equals("") &&
+                !zipField.getText().equals("") &&
+                !(specCombo.getValue() == null);
     }
 }

@@ -55,12 +55,20 @@ public class HistoryController implements Initializable {
             for(Examination e : cellData.getValue().getExaminations()){
                 sb.append(e.getName()).append(", ");
             }
+            if(sb.length() <= 2){
+                return new SimpleStringProperty(sb.toString());
+            }
             return new SimpleStringProperty(sb.substring(0, sb.toString().length() - 2));
         });
         drugsColumn.setCellValueFactory(cellData ->{
             StringBuilder sb = new StringBuilder();
-            for(Drug d : cellData.getValue().getPrescription().getDrugs()){
-                sb.append(d.getName()).append(", ");
+            if(cellData.getValue().getPrescription() != null){
+                for(Drug d : cellData.getValue().getPrescription().getDrugs()){
+                    sb.append(d.getName()).append(", ");
+                }
+            }
+            if(sb.length() <= 2){
+                return new SimpleStringProperty(sb.toString());
             }
             return new SimpleStringProperty(sb.substring(0, sb.toString().length() - 2));
         });

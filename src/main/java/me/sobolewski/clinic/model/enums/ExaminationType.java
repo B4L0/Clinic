@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 public enum ExaminationType {
 
     PRELIMINARY("wstępne"),
-    PERIODIC("okresowe"),
     ROUTINE("kontrolne"),
-    FINAL("końcowe"),
     DIAGNOSTIC("diagnostyczne"),
     SPECIALIST("specjalistyczne");
     

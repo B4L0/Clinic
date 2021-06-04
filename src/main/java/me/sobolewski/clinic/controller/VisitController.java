@@ -22,7 +22,8 @@ import java.util.ResourceBundle;
 
 public class VisitController implements Initializable {
     
-    private static final Visit visit = new Visit();
+    private static Visit visit;
+    
     public Label durationLabel;
     public Label firstNameLabel;
     public Label lastNameLabel;
@@ -51,6 +52,7 @@ public class VisitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Patient visitor = Clinic.getCurrentVisit().getPatient();
+        visit = new Visit();
         
         firstNameLabel.setText("Imię: " + visitor.getFirstName());
         lastNameLabel.setText("Nazwisko: " + visitor.getLastName());
@@ -77,7 +79,7 @@ public class VisitController implements Initializable {
     private void initDuration() {
         Timeline duration = new Timeline(
                 new KeyFrame(Duration.ZERO, e -> {
-                    if (Clinic.getLoginSession() != null) {
+                    if (Clinic.getCurrentVisit() != null) {
                         durationLabel.setText("Czas trwania wizyty: "
                                 + ChronoUnit.MINUTES.between(Clinic.getCurrentVisit().getStartTime(), LocalDateTime.now())
                                 + " minut(y)");
@@ -129,6 +131,7 @@ public class VisitController implements Initializable {
                 visit.getPatient().getVisits().add(visit);
                 EntityUtils.save(visit);
                 Clinic.getLoginSession().setVisitsDone(Clinic.getLoginSession().getVisitsDone() + 1);
+                Clinic.setCurrentVisit(null);
                 Stage stage = (Stage) finishVisitButton.getScene().getWindow();
                 stage.setScene(FXMLManager.loadScene("start"));
             }

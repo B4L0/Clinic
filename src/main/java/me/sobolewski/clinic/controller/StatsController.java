@@ -94,7 +94,7 @@ public class StatsController implements Initializable {
         examinationsChart.getXAxis().setLabel("Badanie");
         examinationsChart.getYAxis().setLabel("Wykonano razy");
         
-        for(int i = 0; i < amount; i++){
+        for(int i = 0; i < (Math.min(rsMap.keySet().size(), amount)); i++){
             series.getData().add(new XYChart.Data<>(
                     rsMap.keySet().stream().toList().get(i),
                     rsMap.get(rsMap.keySet().stream().toList().get(i))

@@ -17,11 +17,6 @@ public class InputValidation {
         return pattern.matcher(phoneNumber).matches();
     }
     
-    public boolean isValidZIPCode(String ZIP){
-        Pattern pattern = Pattern.compile("^\\\\d{2}[- ]?\\\\d{3}$");
-        return pattern.matcher(ZIP).matches();
-    }
-    
     public boolean isValidPESEL(String PESEL){
         Pattern pattern = Pattern.compile("^\\d{11}$");
         return pattern.matcher(PESEL).matches();
